@@ -2,11 +2,14 @@
 
 @section('content')
 <div class="container-fluid mt-4">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-4">
         <div class="col">
             <h1>
                 Projects
             </h1>
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-success">
+                New Repository
+            </a>
         </div>
     </div>
     <div class="row">
@@ -32,13 +35,13 @@
                             <td>{{ $project->type }}</td>
                             <td>
                                 <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary">
-                                    Dettagli
+                                    Details
                                 </a>
                                 <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning">
-                                    Modifica
+                                    Update
                                 </a>
                                 <a href="#" class="btn btn-danger">
-                                    Elimina
+                                    Delete
                                 </a>
                             </td>
                         </tr>
