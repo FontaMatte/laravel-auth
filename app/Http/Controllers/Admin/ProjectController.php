@@ -47,7 +47,7 @@ class ProjectController extends Controller
             'type' => $data['type']
         ]);
 
-        return redirect()->route('admin.projects.show', $newProject);
+        return redirect()->route('admin.projects.show', $newProject)->with('success', 'Project successfully added');
     }
 
     /**
@@ -81,7 +81,11 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+
+        $project->update($data);
+
+        return redirect()->route('admin.projects.show', $project->id)->with('success', 'Project successfully updated');
     }
 
     /**

@@ -8,17 +8,7 @@
                     New Repository
                 </h2>
             </div>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            @include('partials.errors')
             <div class="row my-4">
                 <div class="col">
                     <form action="{{ route('admin.projects.store') }}" method="post">

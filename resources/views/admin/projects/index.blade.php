@@ -11,6 +11,11 @@
                 New Repository
             </a>
         </div>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
     <div class="row">
         <div class="col">
