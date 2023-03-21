@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title', 64)->unique();
             $table->text('description')->nullable();
-            $table->integer('commits')->unsigned();
-            $table->integer('stars')->unsigned();
+            $table->integer('commits')->unsigned()->nullable();
+            $table->integer('stars')->unsigned()->nullable();
             $table->string('type', 32);
             $table->timestamps();
         });
