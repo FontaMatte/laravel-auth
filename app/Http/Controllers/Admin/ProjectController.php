@@ -88,7 +88,15 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        if (array_key_exists('img', $data)) {
+        if (array_key_exists('delete_img', $data)) {
+            if ($project->img) {
+                Storage::delete($project->img);
+
+                $project->img = null;
+                $project->save();
+            }
+        }
+        else if (array_key_exists('img', $data)) {
             $imgPath = Storage::put('projects', $data['img']);
             $data['img'] = $imgPath;
 
@@ -110,6 +118,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->img) {
+            Storage::delete($project->img);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index')->with('success', 'Project successfully deleted');

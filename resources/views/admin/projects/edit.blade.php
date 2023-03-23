@@ -29,6 +29,12 @@
                                 <strong>Image</strong> 
                             </label>
                             @if ($project->img)
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" value="" name="delete_img" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    Delete image
+                                    </label>
+                                </div>
                                 <div class="mb-3">
                                     <img src="{{ asset('storage/'.$project->img) }}" style="height: 300px" alt="">
                                 </div>
