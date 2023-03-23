@@ -11,16 +11,40 @@
             @include('partials.errors')
             <div class="row my-4">
                 <div class="col">
-                    <form action="{{ route('admin.projects.store') }}" method="post">
+                    <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="input-group flex-nowrap">
+                        <label for="title" class="form-label">
+                            <strong>Project Name</strong><span class="text-danger">*</span>  
+                        </label>
+                        <div class="input-group flex-nowrap mb-3">
                             <span class="input-group-text" id="addon-wrapping">
                                 <i class="fa-solid fa-file-code fa-lg fa-fw"></i>
                             </span>
-                            <input type="text" class="form-control" placeholder="Project Name" name="title" 
-                            required maxlength="64" value="{{ old('title') }}">
+                            <input 
+                                type="text"
+                                id="title" 
+                                class="form-control" 
+                                placeholder="Insert Project Name" 
+                                name="title" 
+                                required maxlength="64" 
+                                value="{{ old('title') }}">
                         </div>
-                        <select class="form-select mt-4" aria-label="Default select example" name="type" required>
+                        <div class="mb-3">
+                            <label for="img" class="form-label">
+                                <strong>Image</strong> 
+                            </label>
+                            <input 
+                                type="file"
+                                accept="image/*"
+                                id="img" 
+                                class="form-control" 
+                                placeholder="Inserisci immagine" 
+                                name="img"> 
+                        </div>
+                        <label for="type" class="form-label">
+                            <strong>Project type</strong><span class="text-danger">*</span> 
+                        </label>
+                        <select class="form-select" aria-label="Default select example" name="type" required id="type">
                             <option selected>Select type</option>
                             <option value="private {{ old('type' == 'private' ? 'selected' : '') }}">Private</option>
                             <option value="public {{ old('type' == 'public' ? 'selected' : '') }}">Public</option>

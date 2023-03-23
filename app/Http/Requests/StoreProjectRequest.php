@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
             'title' => 'required|unique:projects,title|max:64',
             'type' => ['required',
                         Rule::in(['public','private'])
-            ]
+                        ],
+            'img' => 'nullable|image|max:2048'
         ];
     }
 }

@@ -14,6 +14,7 @@ class Project extends Model
         'description',
         'commits',
         'stars',
-        'type'
+        'type',
+        'img'
     ];
 }

@@ -8,6 +8,11 @@
                 <h2>
                     Repository Name: {{ $project->title }}
                 </h2>
+                @if ($project->img)
+                    <div>
+                        <img src="{{ asset('storage/'.$project->img) }}" style="height: 300px" alt="">
+                    </div>
+                @endif
                 <div>
                     <strong>Commits:</strong> {{ $project->commits }}
                 </div>

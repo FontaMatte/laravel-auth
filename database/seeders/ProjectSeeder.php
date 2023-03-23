@@ -20,7 +20,7 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Project::create([
                 'title' => $faker->sentence(4),
                 'stars' => $faker->numberBetween(0, 100),

@@ -33,7 +33,8 @@ class UpdateProjectRequest extends FormRequest
                         ],
             'type' => ['required',
                         Rule::in(['public','private'])
-            ]
+                    ],
+            'img' => 'nullable|image|max:2048'
         ];
     }
 }

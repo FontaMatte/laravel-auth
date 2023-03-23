@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Validation\Rule;
 
+// Helpers
+use Illuminate\Support\Facades\Storage;
+
 class ProjectController extends Controller
 {
     /**
@@ -42,10 +45,12 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
 
-        $newProject = Project::create([
-            'title' => $data['title'],
-            'type' => $data['type']
-        ]);
+        if (array_key_exists('img', $data)) {
+            $imgPath = Storage::put('projects', $data['img']);
+            $data['img'] = $imgPath;
+        }
+        
+        $newProject = Project::create($data);
 
         return redirect()->route('admin.projects.show', $newProject)->with('success', 'Project successfully added');
     }
@@ -82,6 +87,15 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+
+        if (array_key_exists('img', $data)) {
+            $imgPath = Storage::put('projects', $data['img']);
+            $data['img'] = $imgPath;
+
+            if ($project->img) {
+                Storage::delete($project->img);
+            }
+        }
 
         $project->update($data);
 
