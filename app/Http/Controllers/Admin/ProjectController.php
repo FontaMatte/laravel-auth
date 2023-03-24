@@ -10,6 +10,10 @@ use Illuminate\Validation\Rule;
 
 // Helpers
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+
+// Mail
+use App\Mail\NewProject;
 
 class ProjectController extends Controller
 {
@@ -51,6 +55,8 @@ class ProjectController extends Controller
         }
         
         $newProject = Project::create($data);
+
+        Mail::to('matteo@classe84.com')->send(new NewProject($newProject));
 
         return redirect()->route('admin.projects.show', $newProject)->with('success', 'Project successfully added');
     }
